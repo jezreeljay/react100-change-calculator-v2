@@ -51,14 +51,14 @@ class App extends Component {
       alertType: (validateReceived > validateDue) ? 'alert-success' : ((validateReceived != validateDue)) ? `alert-danger` : 'alert-info',
       change: validateChange,
       moneyOwed: (validateDue > validateReceived) ? (validateDue - validateReceived) : 0,
-      twenties: Math.floor(validateChange/20),
-      tens: Math.floor((validateChange/10)%2),
-      fives: Math.floor((validateChange/5)%2),
-      ones: Math.floor(validateChange%5),
-      quarters: Math.floor(((validateChange*100)%100)/25),
-      dimes: Math.floor((((validateChange*100)%100)%25)/10),
-      nickels: Math.floor(((((validateChange*100)%100)%25)%10)/5),
-      pennies: Math.floor(((((validateChange*100)%100)%25)%10)%5),
+      twenties: (validateDue < validateReceived) ? Math.floor(validateChange/20) : 0,
+      tens: (validateDue < validateReceived) ? Math.floor((validateChange/10)%2) : 0,
+      fives: (validateDue < validateReceived) ? Math.floor((validateChange/5)%2) : 0,
+      ones: (validateDue < validateReceived) ? Math.floor(validateChange%5) : 0,
+      quarters: (validateDue < validateReceived) ? Math.floor(((validateChange*100)%100)/25) : 0,
+      dimes: (validateDue < validateReceived) ? Math.floor((((validateChange*100)%100)%25)/10) : 0,
+      nickels: (validateDue < validateReceived) ? Math.floor(((((validateChange*100)%100)%25)%10)/5) : 0,
+      pennies: (validateDue < validateReceived) ? Math.floor(((((validateChange*100)%100)%25)%10)%5) : 0,
     }, () => {
         if (validateDue === undefined || validateReceived === undefined) {
           alertBox();
@@ -76,7 +76,7 @@ class App extends Component {
   alertMessage() {
     return (
       <div className="col">
-        <div id="alertArea" className={ `alert + ${this.state.alertType}`}>  
+        <div id="alertArea" className={ `alert ${this.state.alertType}`}>  
       </div>
     </div>
     );    
