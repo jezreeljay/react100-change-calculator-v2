@@ -5,4 +5,4 @@ This project demos a simple react calculator styled with bootstrap. This is a cl
 * Validates input and throws appropriate alerts and prompts.
 * Calculates total change and displays appropriate denominations in USD.
 
-Working example deployed via [NOW](#).
+Working example deployed via [NOW](https://change-calculator-gihbsdzpei.now.sh).
